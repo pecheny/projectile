@@ -2046,7 +2046,9 @@ project-root for every file."
     ;; alien mode.
     (if (eq projectile-indexing-method 'alien)
         files
-      (projectile-sort-files files))))
+      (mapcar (lambda (f) (decode-coding-string f 'utf-8))
+              (projectile-sort-files files) ))))
+
 
 (defun projectile-current-project-files ()
   "Return a list of the files in the current project."
